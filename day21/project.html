@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Object Model: 30DaysOfJS</title>
+  </head>
+  <body>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h2 {
+        text-decoration: underline;
+      }
+
+      #challenges {
+        font-size: 25px;
+      }
+
+      #challengeBox {
+        width: 800px;
+        height: 20px;
+        padding: 10px;
+        font-size: 20px;
+      }
+    </style>
+    <div class="wrapper">
+      <h1>Ali Siddiqui challenges in <span id="year">2023</span></h1>
+      <h2>30DaysOfJavaScriptChallenge</h2>
+      <h2><span id="datetime"></span></h2>
+      <ul id="challenges">
+        <li class="done">
+          <div id="challengeBox">30DaysOfPythonChallenge Done</div>
+        </li>
+        <li class="ongoing">
+          <div id="challengeBox">30DaysOfJavaScriptChallenge Ongoing</div>
+        </li>
+        <li class="coming">
+          <div id="challengeBox">30DaysOfReactChallenge Coming</div>
+        </li>
+        <li class="coming">
+          <div id="challengeBox">30DaysOfFullStack Challenge Coming</div>
+        </li>
+        <li class="coming">
+          <div id="challengeBox">30DaysOfDataAnalysis Challenge Coming</div>
+        </li>
+        <li class="coming">
+          <div id="challengeBox">30DaysOfReactNative Challenge Coming</div>
+        </li>
+        <li class="coming">
+          <div id="challengeBox">30DaysOfMachineLearning Challenge Coming</div>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      // L3, Q1
+      const yearElement = document.querySelector("#year");
+      const datetimeElement = document.querySelector("#datetime");
+      const doneElement = document.querySelectorAll(".done");
+      const ongoingElement = document.querySelectorAll(".ongoing");
+      const comingElement = document.querySelectorAll(".coming");
+
+      // set the initial styles
+      yearElement.style.color = "black";
+      datetimeElement.style.backgroundColor = "white";
+      doneElement.forEach((e) => (e.style.backgroundColor = "green"));
+      ongoingElement.forEach((e) => (e.style.backgroundColor = "yellow"));
+      comingElement.forEach((e) => (e.style.backgroundColor = "red"));
+
+      // update the style every second
+      setInterval(() => {
+        // change the year color
+        const randomColor = Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .slice(-6);
+        yearElement.style.color = "#" + randomColor;
+
+        // change the datetime background color
+        const randomColor2 = Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .slice(-6);
+        datetimeElement.style.backgroundColor = "#" + randomColor2;
+      }, 1000);
+
+      // Display the current date and time
+      const updateDateTime = () => {
+        const now = new Date();
+        const date = now.toLocaleDateString();
+        const time = now.toLocaleTimeString();
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        const formattedDate =
+          monthNames[now.getMonth()] +
+          " " +
+          now.getDate() +
+          ", " +
+          now.getFullYear() +
+          " " +
+          now.getHours().toString().padStart(2, "0") +
+          ":" +
+          now.getMinutes().toString().padStart(2, "0") +
+          ":" +
+          now.getSeconds().toString().padStart(2, "0");
+
+        datetimeElement.textContent = formattedDate;
+      };
+      updateDateTime();
+      const myList = document.getElementById("challenges");
+      myList.style.listStyle = "none";
+
+      // Add some padding-bottom to the li elements
+      const liElements = document.querySelectorAll("li");
+
+      liElements.forEach((li) => (li.style.marginBottom = "5px"));
+
+      setInterval(updateDateTime, 1000);
+    </script>
+  </body>
+</html>

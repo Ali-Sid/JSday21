@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Object Model</title>
+  </head>
+  <body>
+    <p id="p1">This is the first paragraph</p>
+    <p id="p2">This is the second paragraph</p>
+    <p id="p3">This is the third paragraph</p>
+    <p id="p4">This is the fourth paragraph</p>
+
+    <script>
+      // Q1.
+      const para = document.querySelector("p");
+      console.log(para.textContent);
+
+      // Q2.
+      const para1 = document.querySelector("#p1");
+      console.log(para1.textContent);
+      // This is the first paragraph
+
+      const para2 = document.querySelector("#p2");
+      console.log(para2.textContent);
+      // this is the second paragraph
+
+      const para3 = document.querySelector("#p3");
+      console.log(para3.textContent);
+      // this is the third paragraph
+
+      const para4 = document.querySelector("#p4");
+      console.log(para4.textContent);
+      // this is the fourth paragraph
+
+      // Q3.
+      const paragraphs = document.querySelectorAll("p");
+      console.log(paragraphs);
+      // NodeList(4) [p#p1, p#p2, p#p3, p#p4]
+
+      // Q4.
+      const allParagraphs = document.querySelectorAll("p");
+      allParagraphs.forEach((paragraph) => {
+        console.log(paragraph.textContent);
+      });
+      // This is the first paragraph
+      // This is the second paragraph
+      // This is the third paragraph
+      // This is the fourth paragraph
+
+      // Q5.
+      const chgText = document.querySelectorAll("p");
+      chgText[3].textContent = "Fourth Paragraph";
+      // Fourth Paragraph
+
+      // Q6.
+
+      // using setAttributes() method to set id attribute
+      document
+        .getElementsByTagName("p")[0]
+        .setAttribute("id", "first-paragraph");
+      document
+        .getElementsByTagName("p")[1]
+        .setAttribute("id", "second-paragraph");
+      document
+        .getElementsByTagName("p")[2]
+        .setAttribute("id", "third-paragraph");
+      document
+        .getElementsByTagName("p")[3]
+        .setAttribute("id", "fourth-paragraph");
+
+      // using dot notation to set class attributes
+      document.getElementsByTagName("p")[0].className = "my-class";
+
+      // using classList.add() to add class attribute
+      document.getElementsByTagName("p")[1].classList.add("my-class");
+
+      // using setAttribute() method to set class attributes
+      document.getElementsByTagName("p")[2].setAttribute("class", "my-class");
+
+      // using classList.toggle() method to add/remove class attributes
+      document.getElementsByTagName("p")[3].classList.toggle("my-class");
+
+      // L2, Q1
+      /*const paraStyle = document.querySelectorAll("p");
+      paraStyle.forEach((paragraph, i) => {
+        if (i % 2 === 0) {
+          paragraph.style.fontSize = "40px";
+          paragraph.style.color = "red";
+          paragraph.style.fontFamily = "sans-serif";
+          paragraph.style.background = "grey";
+        } else {
+          paragraph.style.backgroundColor = "black";
+          paragraph.style.color = "white";
+          paragraph.style.fontSize = "25px";
+          paragraph.style.fontFamily = "Arial";
+          paragraph.style.border = "5px solid red";
+        }
+      });
+      uncomment this and comment out L2, Q2 block if you want to test L2 Q1*/
+
+      // L2, Q2
+      const paraStyle2 = document.querySelectorAll("p");
+      paraStyle2.forEach((paragraph, i) => {
+        if (i % 2 === 0) {
+          paragraph.style.color = "red";
+        } else {
+          paragraph.style.color = "green";
+        }
+      });
+
+      // L2, Q3
+      // select all paragraphs
+      const setParagraph = document.querySelectorAll("p");
+      // loop through each para and set text, id and class
+      for (let i = 0; i < setParagraph.length; i++) {
+        // set text content
+        setParagraph[i].textContent = `This is a new paragraph ${i + 1}`;
+
+        // set id
+        setParagraph[i].setAttribute("id", `paragraph${i + 1}`);
+
+        // set class
+        setParagraph[i].classList.add("new-para");
+
+        console.log(
+          `Paragraph ${i + 1}: text content = ${
+            setParagraph[i].textContent
+          }, id = ${setParagraph[i].id}, class = ${setParagraph[i].classList}`
+        );
+      }
+      // Paragraph 1: text content = This is a new paragraph 1, id = paragraph1, class = my-class new-para
+      // Paragraph 2: text content = This is a new paragraph 2, id = paragraph2, class = my-class new-para
+      // Paragraph 3: text content = This is a new paragraph 3, id = paragraph3, class = my-class new-para
+      // Paragraph 4: text content = This is a new paragraph 4, id = paragraph4, class = my-class new-para
+    </script>
+  </body>
+</html>
